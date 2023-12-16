@@ -44,7 +44,7 @@ window.addEventListener('scroll', scrollActive)
 // adds all the images from the img folder.
 document.addEventListener('DOMContentLoaded', function () {
     const imageContainer = document.getElementById('allArtworks');
-    const imageFolder = 'assets/artworks/';
+    const imageFolder = 'artworks/';
 
     fetch(imageFolder) // Fetch the folder
         .then(response => response.text())
