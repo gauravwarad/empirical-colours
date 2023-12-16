@@ -348,6 +348,13 @@ img {
   row-gap: 2rem;
 }
 
+.more_button  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
 .work__img {
   box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
   border-radius: .5rem;
