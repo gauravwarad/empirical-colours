@@ -44,32 +44,24 @@ window.addEventListener('scroll', scrollActive)
 // adds all the images from the img folder.
 document.addEventListener('DOMContentLoaded', function () {
     const imageContainer = document.getElementById('allArtworks');
-    const imageFolder = 'artworks/';
+    // const imageFolder = 'artworks/';
 
-    fetch(imageFolder) // Fetch the folder
-        .then(response => response.text())
-        .then(text => {
-            const parser = new DOMParser();
-            const html = parser.parseFromString(text, 'text/html');
-            const links = html.querySelectorAll('a[href]:not([href$=".html"])'); // Get all image links
+    fetch('images.json') // Fetch the JSON file
+        .then(response => response.json())
+        .then(data => {
+            const imageUrls = data.images;
 
-            links.forEach(link => {
-                const imagePath = link.href;
-                const imageExtension = imagePath.split('.').pop().toLowerCase();
-                const allowedExtensions = ['png', 'jpg', 'jpeg', 'gif']; // Add more image extensions if needed
+            imageUrls.forEach(imageUrl => {
+                const imageLink = document.createElement('a');
+                imageLink.href = imageUrl;
+                imageLink.classList.add('work__img');
 
-                if (allowedExtensions.includes(imageExtension)) {
-                    const imageLink = document.createElement('a');
-                    imageLink.href = imagePath;
-                    imageLink.classList.add('work__img');
+                const imageElement = document.createElement('img');
+                imageElement.src = imageUrl;
+                imageElement.alt = imageUrl.substring(imageUrl.lastIndexOf('/') + 1); // Set alt attribute using the file name
 
-                    const imageElement = document.createElement('img');
-                    imageElement.src = imagePath;
-                    imageElement.alt = link.textContent.trim(); // Set alt attribute using the file name
-
-                    imageLink.appendChild(imageElement);
-                    imageContainer.appendChild(imageLink);
-                }
+                imageLink.appendChild(imageElement);
+                imageContainer.appendChild(imageLink);
             });
         })
         .catch(error => {
