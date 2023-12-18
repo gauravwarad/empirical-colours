@@ -42,32 +42,32 @@ function scrollActive(){
 window.addEventListener('scroll', scrollActive)
 
 // adds all the images from the img folder.
-document.addEventListener('DOMContentLoaded', function () {
-    const imageContainer = document.getElementById('allArtworks');
-    // const imageFolder = 'artworks/';
+// document.addEventListener('DOMContentLoaded', function () {
+//     const imageContainer = document.getElementById('allArtworks');
+//     // const imageFolder = 'artworks/';
 
-    fetch('images.json') // Fetch the JSON file
-        .then(response => response.json())
-        .then(data => {
-            const imageUrls = data.images;
+//     fetch('images.json') // Fetch the JSON file
+//         .then(response => response.json())
+//         .then(data => {
+//             const imageUrls = data.images;
 
-            imageUrls.forEach(imageUrl => {
-                const imageLink = document.createElement('a');
-                imageLink.href = imageUrl;
-                imageLink.classList.add('work__img');
+//             imageUrls.forEach(imageUrl => {
+//                 const imageLink = document.createElement('a');
+//                 imageLink.href = imageUrl;
+//                 imageLink.classList.add('work__img');
 
-                const imageElement = document.createElement('img');
-                imageElement.src = imageUrl;
-                imageElement.alt = imageUrl.substring(imageUrl.lastIndexOf('/') + 1); // Set alt attribute using the file name
+//                 const imageElement = document.createElement('img');
+//                 imageElement.src = imageUrl;
+//                 imageElement.alt = imageUrl.substring(imageUrl.lastIndexOf('/') + 1); // Set alt attribute using the file name
 
-                imageLink.appendChild(imageElement);
-                imageContainer.appendChild(imageLink);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching images:', error);
-        });
-});
+//                 imageLink.appendChild(imageElement);
+//                 imageContainer.appendChild(imageLink);
+//             });
+//         })
+//         .catch(error => {
+//             console.error('Error fetching images:', error);
+//         });
+// });
 
 
 /*===== SCROLL REVEAL ANIMATION =====*/
